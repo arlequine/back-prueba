@@ -57,12 +57,6 @@ const {
  *   get:
  *     summary: get list users
  *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
  *         description: Get List Users.
