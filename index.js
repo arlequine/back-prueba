@@ -1,24 +1,27 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const dotenv = require('dotenv');
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const swagger = require("./swagger")
+// const port = 3000
+const router = require('./apis')
+
+dotenv.config()
+
+const port = process.env.PORT || 4000
+
+app.use(express.json())
+app.use('/api/v1', router)
+
 
 app.get('/', (req, res) => {
-  res.send('Hola Mundo')
+  res.send({
+    message: 'hola mundo'
+  })
 })
 
-app.get('/saludo', (req, res) => {
-  res.send('Hola, ¡bienvenido a la ruta de saludo!')
-})
-
-app.get('/usuarios', (req, res) => {
-  const usuarios = ['Usuario1', 'Usuario2', 'Usuario3'];
-  res.json(usuarios)
-})
-
-app.get('/producto/:id', (req, res) => {
-  const productId = req.params.id
-  res.send(`Información del producto con ID ${productId}`);
-})
+swagger(app)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
