@@ -15,6 +15,9 @@ const options = {
       {
         url: "http://localhost:3000",
       },
+      {
+        url: "https://back-prueba-dusky.vercel.app/api/v1",
+      },
     ],
   },
   apis: ["./apis/*.js"],
